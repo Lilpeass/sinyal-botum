@@ -33,6 +33,11 @@ jobs:
         run: |
           git config user.name "sinyal-bot"
           git config user.email "actions@github.com"
-          git add state.json
-          git diff --staged --quiet || git commit -m "durum güncellendi"
-          git push
+          ls -la
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Kaydedilecek bir değişiklik yok."
+          else
+            git commit -m "durum güncellendi"
+            git push
+          fi
