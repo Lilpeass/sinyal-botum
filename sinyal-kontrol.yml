@@ -1,0 +1,38 @@
+name: Sinyal Kontrolü
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'    # her 5 dakikada bir çalışır (GitHub'ın izin verdiği en hızlı aralık)
+  workflow_dispatch:          # "Run workflow" butonuyla elle de tetiklenebilir (test için kullanışlı)
+
+permissions:
+  contents: write   # durum dosyasını (state.json) repoya geri kaydedebilmek için gerekli
+
+jobs:
+  check-signal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu indir
+        uses: actions/checkout@v4
+
+      - name: Python kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Bağımlılıkları yükle
+        run: pip install -r requirements.txt
+
+      - name: Sinyali kontrol et ve gerekirse bildirim gönder
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python signal_bot.py
+
+      - name: Durum dosyasını kaydet
+        run: |
+          git config user.name "sinyal-bot"
+          git config user.email "actions@github.com"
+          git add state.json
+          git diff --staged --quiet || git commit -m "durum güncellendi"
+          git push
