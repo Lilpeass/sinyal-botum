@@ -18,7 +18,7 @@ import requests
 # ----------------------------------------------------------------------
 # AYARLAR - paneldeki "Ayarları Optimize Et" sonucuna göre güncelleyebilirsin
 # ----------------------------------------------------------------------
-SYMBOL = "BTCUSDT"          # izlenecek parite (panel ile aynı isimlendirme, aşağıda Coinbase karşılığına çevriliyor)
+SYMBOL = "ETHUSDT"          # izlenecek parite (panel ile aynı isimlendirme, aşağıda Coinbase karşılığına çevriliyor)
 INTERVAL = "5m"             # mum periyodu
 
 # Binance yerine Coinbase kullanıyoruz çünkü GitHub Actions sunucuları ABD'de barınıyor
@@ -32,7 +32,7 @@ COINBASE_SYMBOL_MAP = {
 }
 INTERVAL_TO_GRANULARITY = {"1m": 60, "5m": 300, "15m": 900, "1h": 3600}
 
-OVERSOLD = 30                # RSI bu değerin altındaysa + trend uygunsa -> AL
+OVERSOLD = 35                # RSI bu değerin altındaysa + trend uygunsa -> AL
 OVERBOUGHT = 75               # RSI bu değerin üstündeyse + trend uygunsa -> SAT
 SMA_LONG = 100                 # trend filtresi için kullanılan hareketli ortalama periyodu
 SL_MULT = 1.0                  # zarar-kes çarpanı (oynaklığa göre)
