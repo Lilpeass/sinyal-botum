@@ -18,7 +18,7 @@ import requests
 # ----------------------------------------------------------------------
 # AYARLAR - paneldeki "Ayarları Optimize Et" sonucuna göre güncelleyebilirsin
 # ----------------------------------------------------------------------
-SYMBOL = "ETHUSDT"          # izlenecek parite (panel ile aynı isimlendirme, aşağıda Coinbase karşılığına çevriliyor)
+SYMBOL = "SOLUSDT"          # izlenecek parite (panel ile aynı isimlendirme, aşağıda Coinbase karşılığına çevriliyor)
 INTERVAL = "5m"             # mum periyodu
 
 # Binance yerine Coinbase kullanıyoruz çünkü GitHub Actions sunucuları ABD'de barınıyor
